@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
    private BoxCollider2D boxCollider;
    private Vector3 moveDelta;
    private RaycastHit2D hit;
+   public Animator animator;
 
    private void Start() //Note: This is a function that runs at game start
    {
@@ -19,6 +20,10 @@ public class Player : MonoBehaviour
        //Check for input
        float x = Input.GetAxisRaw("Horizontal"); //-1, 0, or 1
        float y = Input.GetAxisRaw("Vertical"); //-1, 0, or 1
+
+       animator.SetFloat("Speed", Mathf.Max(Mathf.Abs(x), Mathf.Abs(y))); //Animates the player when the player is moving
+
+    
        
        // Reset moveDelta
        moveDelta = new Vector3(x,y,0);
